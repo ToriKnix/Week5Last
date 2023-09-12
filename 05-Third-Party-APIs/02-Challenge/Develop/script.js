@@ -18,4 +18,22 @@ $(function () {
       }
     });
   }
+// Function to display the current date in the header
+function displayCurrentDate() {
+  var currentDay = dayjs().format('dddd, MMMM D, YYYY');
+  $('#currentDay').text(currentDay);
+}
 
+// Call the initial functions
+displayCurrentDate();
+updateTimeBlockStatus();
+loadSavedEvents();
+
+// Event listener for the save buttons
+$('.saveBtn').on('click', function () {
+  var blockId = $(this).parent().attr('id');
+  var eventText = $(this).siblings('.description').val();
+
+  localStorage.setItem(blockId, eventText);
+});
+});
